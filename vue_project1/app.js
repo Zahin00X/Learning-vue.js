@@ -1,3 +1,31 @@
+Vue.createApp({
+
+    data() 
+    {
+        return {
+            goals: [],
+            enteredValue:''
+        };
+    },
+
+    methods: {
+        addGoal()
+        {
+            this.goals.push(this.enteredValue);
+        }
+    }
+
+}).mount("#app");
+ 
+
+
+
+
+
+
+
+
+/*
 // mapping of elements
 
 const buttonEl = document.querySelector('button');
@@ -17,3 +45,4 @@ function addGoal()
 
 //creating click listener for every input submit
 buttonEl.addEventListener('click', addGoal);
+*/
