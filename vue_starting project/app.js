@@ -3,7 +3,7 @@ const app = Vue.createApp({
     {
         return{
             courseGoalA: 'Finish Vue.js within 15 days!',
-            courseGoalB: 'Finish docker within 15 days!',
+            courseGoalB: '<h1>Finish docker within 15 days!</h1>',
             vueLink: 'https://vuejs.org/'
         };
     },
