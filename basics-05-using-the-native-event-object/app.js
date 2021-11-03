@@ -1,12 +1,12 @@
 const app = Vue.createApp({
-  data() {
+  data() 
+    {
     return {
       counter: 0,
       name: '',
-      email: ''
     };
   },
-  watch: {
+/*  watch: {
 
       name(value)
       {
@@ -20,7 +20,7 @@ const app = Vue.createApp({
         }
       }
 
-  },
+  }, */
   computed:{
 
       fullName()
