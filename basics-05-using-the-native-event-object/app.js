@@ -2,13 +2,29 @@ const app = Vue.createApp({
   data() 
     {
     return {
+
       counter: 0,
       name: '',
+      //fullName: '',
+      lastName: ''
+
     };
   },
-/*  watch: {
+  watch: {
 
-      name(value)
+    counter(value)
+    {
+      const that = this;
+      if( value > 65 )
+      {
+        setTimeout(function () {
+          that.counter = 0;
+        },2000);
+        
+      }
+    }
+
+    /*  name(value)
       {
         if(value === '')
         {
@@ -16,24 +32,35 @@ const app = Vue.createApp({
         }
         else
         {
-          this.fillName = value + ' ' + "Masroor Bhuiuyan";
+          this.fullName = value + ' ' + this.lastName;
         }
-      }
+      },
+      lastName(value)
+      {
+        if(value === '')
+        {
+          this.fullName = '';
+        }
+        else
+        {
+          this.fullName = this.name + ' ' + value; 
+        }
+      } */
 
-  }, */
+  }, 
   computed:{
 
       fullName()
       {
         console.log("Running again!");
-        if(this.name === '')
+        if(this.name === '' || this.lastName === '')
         {
           return '';
         }
-        return this.name+ ' '  + 'Masroor Bhuiyan' ;
+        return this.name+ ' '  + this.lastName ;
 
-      }
-  },
+      } 
+  }, 
   methods: {
     resetInput()
     {
@@ -42,10 +69,12 @@ const app = Vue.createApp({
    /* setName(event, lastName) {
       this.name = event.target.value;
     }, */
-    add(num) {
+    add(num) 
+    {
       this.counter = this.counter + num;
     },
-    reduce(num) {
+    reduce(num) 
+    {
       this.counter = this.counter - num;
       // this.counter--;
     }
