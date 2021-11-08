@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>shurjoMukhi</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+<link rel="stylesheet" href="css/styles.css">
+<link rel="icon" href="favicon.ico">
+<script src="./js/darkmode.js"></script> 
+<script src="https://unpkg.com/vue@next" defer></script>
+<script src="./js/myProgram.js"></script> 
+<script src="./js/validateForm.js"></script> 
+<script src="./js/app.js"></script>
+</head>
+<body id="mainBody">
+<div id="firstDiv" >
+<!--<img src="https://shurjomukhi.com.bd/wp-content/uploads/2019/05/cropped-logo.png" align="left">
+<h1 id="siteTitle">shurjoMukhi</h1> -->
+<table align="left">
+<tr>
+<td><img src="https://shurjomukhi.com.bd/wp-content/uploads/2019/05/cropped-logo.png"></td>
+<td><h1 id="siteTitle">shurjoMukhi</h1></td>
+</tr>
+</table>
+<br>
+
+<ul  align="right">
+<l1><a class="alpha" href="https://shurjomukhi.com.bd/"> About </a></l1>
+<l1><a class="alpha" href="login.html"> Login </a></l1>
+<li><a class="alpha" href="https://shurjomukhi.com.bd/?page_id=260"> Contact us </a></li>
+</ul>
+<center>
+<em><strong><a class="alpha" href="https://shurjomukhi.com.bd/">Main Website</a></strong></em>
+</center>
+</div>
+<center>
+<div id="secondDiv">
+
+<h3><a style="color: #3F0071" href="https://shurjomukhi.com.bd/?page_id=569">shurjoMukhi praniSheba is the Champion at this year's APICTA Awards</a></h3>
+
+</div>
+<div>
+        <em><h2>Our Services:</h2></em>
+	<!--	<h4 style="text-indent:192px">Demo text</h4> -->
+	 	<ul>
+		<li><em><strong><a class="alpha" href="https://www.shurjopay.com.bd/">shurjoPay</a></strong></em></li>
+		<li><em><strong><a class="alpha" href="https://shurjomukhi.com.bd/?page_id=227">shurjoBarta</a></strong></em></li>
+		<li><em><strong><a class="alpha" href="https://shurjomukhi.com.bd/?page_id=225">shurjoRajjo</a></strong></em></li>
+		<li><strong><em><a class="alpha" href="https://shurjomukhi.com.bd/?p=283">payPoint</a></em></strong></li>	
+		</ul>  
+</div>
+</center>
+<div>
+<table>
+<tr>
+<td><label>Name:</label></td>
+<td><input type="text" id="fName"></td>
+</tr>
+<tr>
+<td><label>Phone:</label></td>
+<td><input type="text" id="fNumber"></td>
+</tr>
+<tr>
+<td><label>Address:</label></td>
+<td><input type="text" id="fAddress"></td>
+</tr>
+<tr>
+<td><label>Email:</label></td>
+<td><input type="email" id="fEmail" ></td>
+</tr>
+</table>
+
+<label>Department:</label>
+<input type="radio" id="HR" name="fDepartment" value="HR">
+<label>HR</label>
+<input type="radio" id="Tech" name="fDepartment" value="Tech">
+<label>Tech</label>
+<input type="radio" id="Marketing" name="fDepartment" value="Marketing">
+<label>Marketing</label>
+<br>
+
+<button type="Submit" onclick="validate()">Submit</button> 
+
+</div>
+<div>
+<center>
+<table border="1">
+<thead>
+<tr>
+<th>Name</th>
+<th>Phone</th>
+<th>Address</th>
+<th>Email</th>
+<th>Department</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td id="tName"></td>
+<td id="tNumber"></td>
+<td id="tAddress"></td>
+<td id="tEmail"></td>
+<td id="tDepartment"></td>
+</tr>
+</tbody>
+</table>
+<center>
+
+</div>
+
+
+<template>
+  <v-data-table
+    :headers="headers"
+    :items="desserts"
+    sort-by="calories"
+    class="elevation-1"
+  >
+    <template v-slot:top>
+      <v-toolbar
+        flat
+      >
+        <v-toolbar-title>My CRUD</v-toolbar-title>
+        <v-divider
+          class="mx-4"
+          inset
+          vertical
+        ></v-divider>
+        <v-spacer></v-spacer>
+        <v-dialog
+          v-model="dialog"
+          max-width="500px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="primary"
+              dark
+              class="mb-2"
+              v-bind="attrs"
+              v-on="on"
+            >
+              New Item
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">{{ formTitle }}</span>
+            </v-card-title>
+
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.name"
+                      label="Dessert name"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.calories"
+                      label="Calories"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.fat"
+                      label="Fat (g)"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.carbs"
+                      label="Carbs (g)"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.protein"
+                      label="Protein (g)"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="close"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="save"
+              >
+                Save
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogDelete" max-width="500px">
+          <v-card>
+            <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+    </template>
+    <template v-slot:item.actions="{ item }">
+      <v-icon
+        small
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+      <v-icon
+        small
+        @click="deleteItem(item)"
+      >
+        mdi-delete
+      </v-icon>
+    </template>
+    <template v-slot:no-data>
+      <v-btn
+        color="primary"
+        @click="initialize"
+      >
+        Reset
+      </v-btn>
+    </template>
+  </v-data-table>
+</template>
+
+
+<div>
+<center>
+<button type="button" onclick="dark()">Dark Mode</button>
+</center>
+</div>
+
+<div>
+<center>
+<button onclick="window.print()">Print this page</button>
+</center>
+</div>
+
+<hr>
+<div id="footer">
+<center>
+<p id="pFooter">&copy; 2021 shurjoMukhi.com</p>
+</center>
+</div>
+
+</body>
+</html>
