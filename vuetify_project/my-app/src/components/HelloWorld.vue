@@ -12,7 +12,6 @@
         </v-container-fluid> 
 </template>
 
-
 <script>
 import DemoDataTable from './DemoDataTable'
 

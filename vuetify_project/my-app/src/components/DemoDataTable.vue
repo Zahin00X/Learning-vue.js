@@ -105,13 +105,28 @@
               <v-btn
                 color="blue darken-1"
                 text
-                @click="save"
+                @click="save(); successSnackbar = true;"
               >
                 Save
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
+        <v-snackbar v-model="successSnackbar">
+
+        {{ successText }}
+
+        <template v-slot:action="{ attrs }">
+        <v-btn
+          color="green"
+          text
+          v-bind="attrs"
+          @click="successSnackbar = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -149,11 +164,143 @@
       </v-btn>
     </template>
   </v-data-table>
-</template>
+
+  <v-bottom-sheet>Click Me</v-bottom-sheet>
+
+<!--  <v-container fluid>
+    <v-sparkline
+      :fill="fill"
+      :gradient="selectedGradient"
+      :line-width="width"
+      :padding="padding"
+      :smooth="radius || false"
+      :value="sValues"
+      auto-draw
+    ></v-sparkline>
+
+    <v-divider></v-divider>
+
+    <v-row>
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-row
+          class="fill-height"
+          align="center"
+        >
+          <v-item-group
+            v-model="selectedGradient"
+            mandatory
+          >
+            <v-row>
+              <v-item
+                v-for="(gradient, i) in gradients"
+                :key="i"
+                v-slot="{ active, toggle }"
+                :value="gradient"
+              >
+                <v-card
+                  :style="{
+                    background: gradient.length > 1
+                      ? `linear-gradient(0deg, ${gradient})`
+                      : gradient[0],
+                    border: '2px solid',
+                    borderColor: active ? '#222' : 'white'
+                  }"
+                  width="30"
+                  height="30"
+                  class="mr-2"
+                  @click.native="toggle"
+                ></v-card>
+              </v-item>
+            </v-row>
+          </v-item-group>
+        </v-row>
+      </v-col>
+
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-slider
+          v-model="width"
+          label="Width"
+          min="0.1"
+          max="10"
+          step="0.1"
+          thumb-label
+        ></v-slider>
+      </v-col>
+
+      <v-col cols="6">
+        <v-row
+          class="fill-height"
+          align="center"
+        >
+          <v-switch
+            v-model="fill"
+            label="Filled"
+          ></v-switch>
+        </v-row>
+      </v-col>
+
+      <v-col
+        cols="12"
+        md="6"
+      >
+        <v-slider
+          v-model="radius"
+          label="Radius"
+          min="0"
+          max="25"
+          thumb-label
+        ></v-slider>
+      </v-col>
+
+      <v-col
+        cols="12"
+        md="6"
+        offset-md="6"
+      >
+        <v-slider
+          v-model="padding"
+          label="Padding"
+          min="0"
+          max="25"
+          thumb-label
+        ></v-slider>
+      </v-col>
+    </v-row>
+  </v-container> -->
+</template> 
+
+
+
+
+
 
 <script>
+
+  const gradients = [
+    ['#222'],
+    ['#42b3f4'],
+    ['red', 'orange', 'yellow'],
+    ['purple', 'violet'],
+    ['#00c6ff', '#F0F', '#FF0'],
+    ['#f72047', '#ffd200', '#1feaea'],
+  ]
+
   export default {
     data: () => ({
+      fill: true,
+      selectedGradient: gradients[4],
+      gradients,
+      padding: 8,
+      radius: 10,
+      width: 2,
+      successSnackbar: false,
+      successText: "Success!",
       dialog: false,
       dialogDelete: false,
       headers: [
@@ -188,6 +335,10 @@
     }),
 
     computed: {
+      sValues()
+      {
+        return this.desserts['calories'];
+      },
       formTitle () {
         return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
       },
@@ -325,4 +476,7 @@
       },
     },
   }
+
+
+
 </script>
