@@ -6,7 +6,7 @@
         
         
         <DemoDataTable></DemoDataTable>
-        
+        <Footer></Footer>
         </v-layout>
         </v-slide-y-transition>
         </v-container-fluid> 
@@ -14,6 +14,7 @@
 
 <script>
 import DemoDataTable from './DemoDataTable'
+import Footer from './Footer'
 
 
 export default {
@@ -24,7 +25,8 @@ export default {
     }
   },
   components:{
-    DemoDataTable
+    DemoDataTable,
+    Footer
   }
 }
 </script>
