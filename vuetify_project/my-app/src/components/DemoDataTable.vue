@@ -1,15 +1,15 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
-    sort-by="calories"
+    :items="employees"
+    sort-by="salary"
     class="elevation-1"
   >
     <template v-slot:top>
       <v-toolbar
         flat
       >
-        <v-toolbar-title>My CRUD</v-toolbar-title>
+        <v-toolbar-title>Employees</v-toolbar-title>
         <v-divider
           class="mx-4"
           inset
@@ -28,7 +28,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              New Item
+              New Employee
             </v-btn>
           </template>
           <v-card>
@@ -46,7 +46,7 @@
                   >
                     <v-text-field
                       v-model="editedItem.name"
-                      label="Dessert name"
+                      label="Employee Name"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -55,8 +55,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.calories"
-                      label="Calories"
+                      v-model="editedItem.salary"
+                      label="Salary"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -65,8 +65,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
+                      v-model="editedItem.age"
+                      label="Age "
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -75,8 +75,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
+                      v-model="editedItem.dept"
+                      label="dept"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -85,8 +85,8 @@
                     md="4"
                   >
                     <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
+                      v-model="editedItem.lStatus"
+                      label="Leave Status"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -129,7 +129,7 @@
     </v-snackbar>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+            <v-card-title class="text-h5">Are you sure you want to delete this Employee?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
@@ -196,42 +196,42 @@
       dialogDelete: false,
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: 'Employee Name',
           align: 'start',
           sortable: false,
           value: 'name',
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
+        { text: 'Salary (BDT)', value: 'salary' },
+        { text: 'Age', value: 'age' },
+        { text: 'Department', value: 'dept' },
+        { text: 'Leave Status', value: 'lStatus' },
         { text: 'Actions', value: 'actions', sortable: false },
       ],
-      desserts: [],
+      emloyees: [],
       editedIndex: -1,
       editedItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        salary: 0,
+        age: 0,
+        dept: 0,
+        lStatus: 0,
       },
       defaultItem: {
         name: '',
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0,
+        salary: 0,
+        age: 0,
+        dept: 0,
+        lStatus: 0,
       },
     }),
 
     computed: {
       sValues()
       {
-        return this.desserts['calories'];
+        return this.employees['salary'];
       },
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? 'New Employee' : 'Edit Employee'
       },
     },
 
@@ -250,94 +250,94 @@
 
     methods: {
       initialize () {
-        this.desserts = [
+        this.employees = [
           {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
+            name: 'Lionel Messi',
+            salary: 100000,
+            age: 34,
+            dept: 'Tech',
+            lStatus: 'NULL',
           },
           {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
+            name: 'Cristiano Ronaldo',
+            salary: 95000,
+            age: 36,
+            dept: 'Tech',
+            lStatus: 'NULL',
           },
           {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
+            name: 'Michael Phelps',
+            salary: 50000,
+            age: 38,
+            dept: 'HR',
+            lStatus: 'NULL',
           },
           {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
+            name: 'Shakib Al Hasan',
+            salary: 65000,
+            age: 34,
+            dept: 'Marketing',
+            lStatus:'Pending',
           },
           {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
+            name: 'Jacques Kallis',
+            salary: 68000,
+            age: 43,
+            dept: 'Marketing',
+            lStatus: 'Approved',
           },
           {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
+            name: 'Xavi Hernandez',
+            salary: 70000,
+            age: 41,
+            dept: 'Tech',
+            lStatus: 'Resigned',
           },
           {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
+            name: 'Andres Don Iniesta',
+            salary: 75000,
+            age: 38,
+            dept: 'Tech',
+            lStatus: 'Pending',
           },
           {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
+            name: 'Neymar Jr',
+            salary: 92000,
+            age: 29,
+            dept: 'Tech',
+            lStatus: 'Approved',
           },
           {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
+            name: 'Paulo Dybala',
+            salary: 80000,
+            age: 27,
+            dept: 'Tech',
+            lStatus: 'Resigned',
           },
           {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
+            name: 'Wayne Rooney',
+            salary: 73500,
+            age: 37,
+            dept: 'Tech',
+            lStatus: 'Approved',
           },
         ]
       },
 
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.employees.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       deleteItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.employees.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialogDelete = true
       },
 
       deleteItemConfirm () {
-        this.desserts.splice(this.editedIndex, 1)
+        this.employees.splice(this.editedIndex, 1)
         this.closeDelete()
       },
 
@@ -359,9 +359,9 @@
 
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          Object.assign(this.employees[this.editedIndex], this.editedItem)
         } else {
-          this.desserts.push(this.editedItem)
+          this.employees.push(this.editedItem)
         }
         this.close()
       },

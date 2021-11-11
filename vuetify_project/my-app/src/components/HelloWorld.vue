@@ -2,7 +2,7 @@
   <v-container-fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5">
+        <img src="https://shurjomukhi.com.bd/wp-content/uploads/2019/05/cropped-logo.png" alt="Vuetify.js" class="mb-5">
         
         
         <DemoDataTable></DemoDataTable>
