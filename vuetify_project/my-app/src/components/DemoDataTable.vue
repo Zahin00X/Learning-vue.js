@@ -74,20 +74,24 @@
                     sm="6"
                     md="4"
                   >
-                    <v-text-field
-                      v-model="editedItem.dept"
-                      label="dept"
-                    ></v-text-field>
+                  <v-select
+                    v-model="editedItem.dept"
+                    :items="depts"
+                    label="Select Department"
+                    outlined
+                  ></v-select>
                   </v-col>
                   <v-col
                     cols="12"
                     sm="6"
                     md="4"
                   >
-                    <v-text-field
-                      v-model="editedItem.lStatus"
-                      label="Leave Status"
-                    ></v-text-field>
+                    <v-select
+                    v-model="editedItem.lStatus"
+                    :items="lStatuses"
+                    filled
+                    label="Select Leave Status"
+                    ></v-select>
                   </v-col>
                 </v-row>
               </v-container>
@@ -184,6 +188,9 @@
 
   export default {
     data: () => ({
+
+      depts: ['NULL','Tech','HR','Marketing',],
+      lStatuses: ['NULL','Pending','Approved','Resigned'],
       fill: true,
       selectedGradient: gradients[4],
       gradients,
