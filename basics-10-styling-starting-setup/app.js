@@ -23,8 +23,23 @@ const app = Vue.createApp({
             {
                 this.boxSelectedC = !this.boxSelectedC;
             }
-        }
+        },
 
+        clickBox(box)
+        {
+            if(box === 'A')
+            {
+                return {active: this.boxSelectedA};
+            }
+            else if(box === 'B')
+            {
+                return {active: this.boxSelectedB};
+            }
+            else if(box === 'C')
+            {
+                return {active: this.boxSelectedC};
+            }
+        }
     }
 
 });
