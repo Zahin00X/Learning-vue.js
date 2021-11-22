@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <button @click="shareData()">Home</button> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/register">Register</router-link>
+      
     </div>
     <router-view />
   </div>
@@ -15,12 +13,6 @@ export default ({
   components: {
 
   },
-  methods: {
-    shareData()
-    {
-       this.$router.push({name:"Home", params:{data:this.}})
-    }
-  }
 });
 </script>
 
