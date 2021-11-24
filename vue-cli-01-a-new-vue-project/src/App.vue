@@ -2,8 +2,7 @@
     <section>
         <header><h1>My Friends</h1></header>
         <ul>
-            <friend-contact></friend-contact>
-            <friend-contact></friend-contact>
+            <friend-contact v-for="friend in friends" :key="friend.id" :id="friend.id" :name="friend.name" :phone-number="friend.phone" :email-address="friend.email" :is-favorite="friend.Favorite" @toggle-favorite="toggleFavoriteStatus" ></friend-contact>
         </ul>
     </section>    
 </template>
@@ -20,19 +19,30 @@ export default {
         FriendContact,
             friends: [
                 {
-                    id: 'manuel',
-                    name: 'Manuel Lorenz',
-                    phone: '0123 45678 90',
-                    email: 'manuel@localhost.com'
+                    id: 'zahin',
+                    name: 'Zahin Masroor',
+                    phone: '01828050395',
+                    email: 'zahin0013@gmail.com',
+                    Favorite: false
                 },
                 {
-                    id: 'julie',
-                    name: 'Julie Jones',
-                    phone: '9876 54321 20',
-                    email: 'julie@localhost.com'
+                    id: 'lopa',
+                    name: 'Lopa',
+                    phone: '01713344661',
+                    email: 'lopa@gmail.com',
+                    Favorite: true
                 }
-            ]
+            ] 
         }
+    },
+    methods: {
+
+      toggleFavoriteStatus(friendId)
+      {
+        console.log(friendId);
+        const identifiedFriend = this.friends.find((friend) => friend.id === friendId);
+        identifiedFriend.Favorite = !identifiedFriend.Favorite;
+      }
     }
 }
 </script>
