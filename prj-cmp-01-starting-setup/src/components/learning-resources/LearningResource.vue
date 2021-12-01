@@ -1,20 +1,22 @@
 <template>
     <li>
-        <div>
+        <base-card>
             <header>
                 <h3>{{ title }}</h3>
-                <button>Delete</button>
+                <base-button mode="flat" @click="deleteResource(id)">Delete</base-button>
             </header>
-        </div>
-        <p>{{ description }}</p>
-        <nav>
+            <p>{{ description }}</p>
+            <nav>
             <a :href="link">View Resources</a>    
-        </nav>
+            </nav>
+        </base-card>
     </li>
 </template>
 
 <script>
+
 export default {
+    inject: ['deleteResource'],
     props: {
         title: {
             type: String,
@@ -27,6 +29,10 @@ export default {
         link : {
             type :String,
             required : true
+        },
+        id : {
+          type:String,
+          required : true
         }
     }
 }
