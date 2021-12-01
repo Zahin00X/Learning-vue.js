@@ -16,6 +16,7 @@
             </slot>
         </menu>
     </dialog>
+    </teleport>
 </template>
 
 <script>

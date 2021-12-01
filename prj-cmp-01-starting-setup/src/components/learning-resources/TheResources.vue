@@ -75,6 +75,10 @@
         {
             return this.selectedTab === "add-resource" ? null : 'flat';
         }
+    },
+    mounted()
+    {
+        
     }
     }
 </script>
