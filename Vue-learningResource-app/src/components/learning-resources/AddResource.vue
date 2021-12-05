@@ -39,9 +39,12 @@ export default {
   data()
   {
       return {
-          inputIsInvalid : false
+          inputIsInvalid : false,
+          flag: this.selectedTab
+
       };
   },
+  props: ['selectedTab'],
   inject: ['addResource'],
   methods: {
     submitData() {
@@ -63,11 +66,30 @@ export default {
     closeDialog()
     {
        this.inputIsInvalid = false;
-    }
+    },
+    
   },
+
   mounted()
   {
-      
+    
+      this.$refs.titleInput.focus();
+      console.log(this.selectedTab);
+
+    
+  },
+  activated()
+  {
+    
+      this.$refs.titleInput.focus();
+      console.log(this.selectedTab);
+    
+  },
+  deactivated()
+  {
+    this.$refs.titleInput.value = "";
+    this.$refs.descInput.value = "";
+    this.$refs.linkInput.value = "";
   }
 };
 </script>
